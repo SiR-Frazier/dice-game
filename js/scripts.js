@@ -1,33 +1,35 @@
 //back-end logic
-
 function Player(name) {
   this.name = name;
-  this.score = 0; // total from previous round
-  this.running = 0; //total from current round
-  this.total = 0; //combined total
+  this.total = 0; // total score
+  this.running = 0; //score from current round
+}
+
+function Game(player1, player2) {
+  this.player1 = player1;
+  this.player2 = player2;
 }
 
 Player.prototype.playerScore = function() {
   return this.name + ": " + this.total;
 }
 
-Player.prototype.addScore = function(points) {
-  this.score += this.running;
+Player.prototype.hold = function(points) {
+  this.total += this.running;
 }
 
 Player.prototype.rolledOnes = function() {
   this.running = 0;
 }
 
-//function userScore = function(dice) {
-function randomNumber() {
-  var number = Math.ceil(Math.random() * Math.ceil(6));
-  if (number === 1) {
-    return ("Back to zero! Next player up!");
+Player.prototype.roll = function() {
+  var dieRoll = Math.ceil(Math.random() * Math.ceil(6));
+  if (dieRoll === 1) {
+    this.running = 0;
   } else {
-    console.log("Keep rolling! You scored " + number  + " this roll.");
-  };
-};
+    dieRoll += this.running;
+  }
+}
   // if (diceArray(i) === 0) {
   //   alert("Next player up!")
   // };
@@ -37,13 +39,10 @@ function randomNumber() {
 $(document).ready(function(){
   $("#addButton").click(function(event){
     event.preventDefault();
-
-
-    // var playerScore = randomNumber(min, max);
-    var inputtedName = $("input#new-name").val();
-    newPlayer1 = new Player(name);
-    newPlayer2 = new Player(name);
-
-        $("#output").text(inputtedName);
+    var name = $("input#new-name").val();
+    var player = new Player(name, 0, 0);
+    console.log(player);
+    player.roll()
+    $(".playerName").append(player.name);
   });
 });

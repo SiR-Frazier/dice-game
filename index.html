@@ -13,14 +13,18 @@
       <div class="jumbotron">
         <h1>Pig Dice</h1>
       </div>
-      <form id="player">
-      <div class="form-group">
-        <label for= "newPlayer">What is your name?</label>
-        <input type="text" class="form-group" id="new-name">
+      <div class="well">
+        <form id="player">
+          <div class="col-md-2">
+            <div class="form-group">
+              <label for= "newPlayer">Enter name for player 1</label>
+              <input type="text" class="form-group" id="new-name1">
+            </div>
+              <span class="btn" id="output"></span>
+            <button type="submit" class ="btn btn-primary" id="addButton">Add</button>
+          </div>
+        </form>
       </div>
-        <span class="btn" id="output"></span>
-      <button type="submit" class ="btn btn-primary" id="addButton">Add</button>
-      </form>
       <br></br>
       <div class="col-md-6">
         <div class="gameButtons">
@@ -28,6 +32,9 @@
           <button id="hold" type="button" class="btn btn-primary">Hold</button>
         </div>
       </div>
+      <h2><span id=playerNames>Scores</span><h2>
+        <p class="playerName">Player 1: </p>
+        <p class="player2Name">Player 2: </p>
     </div>
   </body>
 </html>
